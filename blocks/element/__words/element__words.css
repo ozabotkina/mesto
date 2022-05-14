@@ -1,0 +1,7 @@
+.element__words {
+    margin: 25px 15px 31px;
+    display: flex;
+    justify-content: space-between;
+    align-content: baseline;
+    width:246px;
+}

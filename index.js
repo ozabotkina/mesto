@@ -16,12 +16,12 @@ function closePopup() {
 closeButton.addEventListener ('click', closePopup);
 
 
-let authorName = document.querySelector('.profile__author_name');
-let nameInput = document.querySelector('.popup__author_name');
+let authorName = document.querySelector('.profile__name');
+let nameInput = document.querySelector('.popup__name');
 nameInput.value = authorName.textContent;
 
-let authorAbout = document.querySelector('.profile__author_about');
-let jobInput = document.querySelector('.popup__author_about');
+let authorAbout = document.querySelector('.profile__about');
+let jobInput = document.querySelector('.popup__about');
 jobInput.value = authorAbout.textContent;
 
 

@@ -1,4 +1,4 @@
-.profile__author_about {
+.profile__about {
 font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
@@ -10,7 +10,7 @@ margin: 16px 0 0 0;
 }
 
 @media screen and (max-width:680px){
-    .profile__author_about{
+    .profile__about ss{
         font-size: 14px;
         line-height: 17px;
         position: relative;

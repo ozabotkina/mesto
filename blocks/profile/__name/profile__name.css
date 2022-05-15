@@ -1,4 +1,4 @@
-.profile__author_name {
+.profile__name {
 font-family: 'Inter';
 font-style: normal;
 font-weight: 500;
@@ -15,7 +15,7 @@ min-width: 190px;
 }
 
 @media screen and (max-width:680px){
-    .profile__author_name {
+    .profile__name {
        font-size: 27px;
        line-height: 33px;
     }

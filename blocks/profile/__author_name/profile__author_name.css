@@ -1,21 +1,21 @@
-.profile__name {
+.profile__author_name {
 font-family: 'Inter';
 font-style: normal;
 font-weight: 500;
 font-size: 42px;
 line-height: 48px;
 color: #FFFFFF;
-margin:0;
-justify-self: center;
+margin: 0px;
+text-align: center;
+min-width: 190px;
+/* justify-self: center; */
 
 
 
 }
 
 @media screen and (max-width:680px){
-    .profile__name{
-       position:relative;
-       left: 14px;
+    .profile__author_name {
        font-size: 27px;
        line-height: 33px;
     }

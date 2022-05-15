@@ -1,5 +1,6 @@
-.popup__name {
+.popup__author_about {
     width: 358px;
+    border: none;
     border-bottom: 1px solid rgba(0,0,0,0.2);
     font-family: 'Inter';
     font-style: normal;
@@ -7,13 +8,15 @@
     font-size: 14px;
     line-height: 17px;
     color: #000000;
-    margin:auto;
+    margin: 30px auto 48px;
     padding-bottom: 13px;
+    display:flex;
+    outline:none;
 }
 
 @media screen and (max-width:680px){
-.popup__name {
-
-    width: 238px;
-}
-}
+    .popup__author_about {
+        width: 238px;
+        margin: 30px auto 45px;
+    }
+    }

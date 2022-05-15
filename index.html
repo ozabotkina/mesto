@@ -10,72 +10,71 @@
 <body class="page">
 
     <div class="popup">
-        <button class="popup__close-icon"></button>
-        <div class="popup__container">
+        <button class="popup__close-icon interactive"></button>
+        <form class="popup__container" action="#" method="#">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <p class="popup__name">Жак-Ив Кусто</p>
-            <p class="popup__subtitle">Исследователь океана</p>
-            <button class="submit-button">Сохранить</button>
-        </div>
+            <input type="text" id="name" name="author_name" class="popup__author_name" ></p>
+            <input type="text" id="about" name="author_about" class="popup__author_about" placeholder="#"></p>
+            <button type="submit" class="submit-button">Сохранить</button>
+        </form>
     </div>
 
 
     <header class="header">
-        <img class="logo" src="./images/Vector.svg">
+        <img class="logo" src="./images/Vector.svg" alt="лого Место">
     </header>
     <main class="content">
         <section class="profile">
-            <img class="profile__avatar" src="./images/Avatar.png">
+            <img class="profile__avatar" src="./images/Avatar.png" alt="Фото автора">
             <div class="profile__info">
-                <h1 class="profile__name">Жак-Ив Кусто <button class="edit-button"></button></h1>
-                <p class="profile__subtitle">Исследователь океана</p>
-                
-
+                <div class="profile__name-wrap"><h1 class="profile__author_name">Жак-Ив Кусто</h1><button class="edit-button interactive"></button></div>
+                <p class="profile__author_about">Исследователь океана</p>
             </div>    
-            <button class="add-button"></button>
+            
+            <button class="add-button interactive"></button>
         </section>    
 
         <section class="elements">
             <div class="element">
-                <img class="element__image" src="./images/image1.jpg">
+                <img class="element__image" src="./images/image1.jpg" alt="Карачаевск">
                 <div class="element__words">
                 <h2 class="element__title">Карачаевск</h2>
-                <div class="element__like"></div>
+                <div class="element__like interactive"></div>
                 </div>
             </div>    
             <div class="element">
-                <img class="element__image" src="./images/image2.jpg">
+                <img class="element__image" src="./images/image2.jpg" alt="Домбай">
                 <div class="element__words">
                 <h2 class="element__title">Домбай</h2>
-                <div class="element__like"></div>
+                <div class="element__like interactive"></div>
                 </div>
             </div>    
             <div class="element">
-                <img class="element__image" src="./images/image3.png">
+                <img class="element__image" src="./images/image3.png" alt="Карачаевск">
                 <div class="element__words">
                 <h2 class="element__title">Карачаевск</h2>
-                <div class="element__like"></div>
+                <div class="element__like interactive"></div>
                 </div>
             </div>    
             <div class="element">
-                <img class="element__image" src="./images/image3.png">
+                <img class="element__image" src="./images/image3.png" alt="Домбай">
                 <div class="element__words">
                 <h2 class="element__title">Домбай</h2>
-                <div class="element__like"></div>
+                <div class="element__like interactive"></div>
                 </div>
             </div>    
             <div class="element">
-                <img class="element__image" src="./images/image2.jpg">
+                <img class="element__image" src="./images/image2.jpg" alt="Карачаевск">
                 <div class="element__words">
                 <h2 class="element__title">Карачаевск</h2>
-                <div class="element__like"></div>
+                <div class="element__like interactive"></div>
                 </div>
             </div>    
             <div class="element">
-                <img class="element__image" src="./images/image1.jpg">
+                <img class="element__image" src="./images/image1.jpg" alt="Карачаево-Черкесия">
                 <div class="element__words">
                 <h2 class="element__title">Карачаево-Черкесия</h2>
-                <div class="element__like"></div>
+                <div class="element__like interactive"></div>
                 </div>
             </div>    
 
@@ -88,5 +87,5 @@
 
 
 
-<script src="./script.js"></script>
+<script src="./index.js"></script>
 </body>

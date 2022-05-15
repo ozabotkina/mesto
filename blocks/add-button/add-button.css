@@ -13,9 +13,12 @@
 }
 
 @media screen and (max-width:680px){
-    .add-button{
-        width:282px;
-        height:50px;
-        position: relative;
-    }}
+.add-button{
+    width:282px;
+    height:50px;
+    background-size: 16px;
+    position: relative;
+    margin-bottom:4px;
+    }
+}
     

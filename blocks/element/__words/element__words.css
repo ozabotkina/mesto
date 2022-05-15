@@ -5,3 +5,10 @@
     align-content: baseline;
     width:246px;
 }
+
+@media screen and (max-width:680px) {
+    .element__words {
+        margin-left: 21px;
+    }
+    
+}

@@ -29,5 +29,5 @@
 @import url(../blocks/popup/__name/popup__name.css);
 @import url(../blocks/profile/__name-wrap/profile__name-wrap.css);
 @import url(../blocks/interactive/interactive.css);
-@import url(../blocks/like-cbox/like-cbox.css);
+@import url(../blocks/element/__like/element__like.css);
 

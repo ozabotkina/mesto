@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="pages/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto Russia</title>
 </head>
@@ -15,8 +15,10 @@
     <section class="profile">
       <img class="profile__avatar" src="./images/Avatar.png" alt="Фото автора">
       <div class="profile__info">
-        <div class="profile__name-wrap"><h1 class="profile__name">Жак-Ив Кусто</h1>
-        <button class="edit-button interactive" type="button"></button></div>
+        <div class="profile__name-wrap">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="edit-button interactive" type="button"></button>
+        </div>
         <p class="profile__about">Исследователь океана</p>
       </div>    
       <button class="add-button interactive" type="button"></button>
@@ -27,60 +29,42 @@
         <img class="element__image" src="./images/image1.jpg" alt="Карачаевск">
         <div class="element__words">
           <h2 class="element__title">Карачаевск</h2>
-          <label class="like-cbox">
-            <input type="checkbox" class="like-cbox__invisible-cbox">
-            <span class="like-cbox__like interactive"></span>
-          </label>
+          <button class="like-cbox interactive" class="button"></button>
         </div>
       </div>    
       <div class="element">
         <img class="element__image" src="./images/image2.jpg" alt="Домбай">
         <div class="element__words">
           <h2 class="element__title">Домбай</h2>
-          <label class="like-cbox">
-            <input type="checkbox" class="like-cbox__invisible-cbox">
-            <span class="like-cbox__like interactive"></span>
-          </label>
+          <button class="like-cbox interactive" class="button"></button>
         </div>
       </div>    
       <div class="element">
         <img class="element__image" src="./images/image3.png" alt="Карачаевск">
         <div class="element__words">
           <h2 class="element__title">Карачаевск</h2>
-          <label class="like-cbox">
-            <input type="checkbox" class="like-cbox__invisible-cbox">
-            <span class="like-cbox__like interactive"></span>
-          </label>
+          <button class="like-cbox interactive" class="button"></button>
         </div>
       </div>    
       <div class="element">
         <img class="element__image" src="./images/image3.png" alt="Домбай">
         <div class="element__words">
           <h2 class="element__title">Домбай</h2>
-          <label class="like-cbox">
-            <input type="checkbox" class="like-cbox__invisible-cbox">
-            <span class="like-cbox__like interactive"></span>
-          </label>
+          <button class="like-cbox interactive" class="button"></button>
         </div>
       </div>    
       <div class="element">
         <img class="element__image" src="./images/image2.jpg" alt="Карачаевск">
         <div class="element__words">
           <h2 class="element__title">Карачаевск</h2>
-          <label class="like-cbox">
-            <input type="checkbox" class="like-cbox__invisible-cbox">
-            <span class="like-cbox__like interactive"></span>
-          </label>
+          <button class="like-cbox interactive" class="button"></button>
         </div>
       </div>    
       <div class="element">
         <img class="element__image" src="./images/image1.jpg" alt="Карачаево-Черкесия">
         <div class="element__words">
           <h2 class="element__title">Карачаево-Черкесия</h2>
-          <label class="like-cbox">
-            <input type="checkbox" class="like-cbox__invisible-cbox">
-            <span class="like-cbox__like interactive"></span>
-          </label>
+          <button class="like-cbox interactive" class="button"></button>
         </div>
       </div>    
     </section>
@@ -90,7 +74,7 @@
     </footer>
 
     <div class="popup">
-        <button class="popup__close-icon interactive"></button>
+        <button class="popup__close-icon interactive" type="reset"></button>
         <form class="popup__container" name="author" action="formSubmitHandler" method="post">
           <h2 class="popup__title">Редактировать профиль</h2>
           <input type="text" id="name" name="popup__name" class="popup__name" >

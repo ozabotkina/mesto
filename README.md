@@ -9,4 +9,4 @@
 
 
 Репозитарий опубликован по ссылке:
-https://github.com/ozabotkina/mesto
+https://ozabotkina.github.io/mesto/

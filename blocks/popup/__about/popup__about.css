@@ -20,3 +20,7 @@
         margin: 30px auto 45px;
     }
     }
+
+    .popup__about:focus {
+        outline: rgb(22, 157, 241) 2px solid ;
+    }

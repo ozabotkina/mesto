@@ -10,5 +10,19 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+animation-name: poppingUp;
+animation-duration: 0.5s;
 }
+
+@keyframes poppingUp {
+ from {
+    opacity: 0; 
+        }  
+ to  {
+    opacity: 1; 
+ }
+}
+
+
+
 

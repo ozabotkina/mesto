@@ -78,7 +78,10 @@ function addCard(link, name)
       {
       evt.target.parentNode.remove()
       });
-    cardImage.addEventListener('click', function(){createImagePopup(cardImage.src, cardTitle.textContent)});
+    cardImage.addEventListener('click', function()
+      {
+      createImagePopup(cardImage.src, cardTitle.textContent);
+      });
     return cardElement;
   };
 
@@ -127,11 +130,13 @@ function createImagePopup(link, name) {
 addButton.addEventListener ('click', function() {
   openPopup(popupNewCard);
 });
+
 editButton.addEventListener ('click', function() {
   openPopup(popupAuthor)
   nameInput.value = authorName.textContent;
   jobInput.value = authorAbout.textContent;
 });
+
 closeButtonAuthor.addEventListener ('click', function() {closePopup(popupAuthor)});
 closeButtonNewCard.addEventListener ('click', function() {closePopup(popupNewCard)});
 formAuthor.addEventListener('submit', formSubmitHandlerAuthor);

@@ -1,48 +1,21 @@
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
-
-const popup = document.querySelector ('.popup');
-const editButton = document.querySelector ('.edit-button');
+const authorButton = document.querySelector ('.edit-button');
 const authorName = document.querySelector('.profile__name');
 const authorAbout = document.querySelector('.profile__about');
-const addButton = document.querySelector('.add-button');
+const newCardButton = document.querySelector('.add-button');
 const popupAuthor = document.querySelector('.popup_author')
 const formAuthor = popupAuthor.querySelector('.popup__container');
 const jobInput = formAuthor.querySelector('.popup__about');
 const nameInput = formAuthor.querySelector('.popup__name');
-const closeButtonAuthor = popupAuthor.querySelector ('.popup__close-icon');
+const authorCloseButton = popupAuthor.querySelector ('.popup__close-icon');
 const popupNewCard = document.querySelector('.popup_new-card');
-const closeButtonNewCard = popupNewCard.querySelector ('.popup__close-icon');
+const newCardCloseButton = popupNewCard.querySelector ('.popup__close-icon');
 const formNewCard = popupNewCard.querySelector('.popup__container');
 const cardNameInput = formNewCard.querySelector('.popup__name');
 const cardLinkInput = formNewCard.querySelector('.popup__about');
 const containerElements = document.querySelector('.elements');
 const bodyPage = document.querySelector('.page');
+const popupImage = document.querySelector('.image-popup')
+const imageCloseButton = popupImage.querySelector('.image-popup__close')
 
 function openPopup(name) {
   name.classList.add('popup_opened');
@@ -88,7 +61,7 @@ function addCard(link, name)
 
 function addInitialCards()
 {
-  for (let i = 0; i < 6; i++)
+  for (let i = 0; i < initialCards.length; i++)
     {
     containerElements.append(addCard(initialCards[i].link, initialCards[i].name));
     }
@@ -112,33 +85,28 @@ function formSubmitHandlerNewCard (evt) {
 }
   
 function createImagePopup(link, name) {
-
-  const imagePopupTemplate = document.querySelector('#imagepopup').content;
-  const imagePopup = imagePopupTemplate.querySelector('.image-popup').cloneNode(true);
-  const imagePopupImage = imagePopup.querySelector('.image-popup__image');
-  const imagePopupComment = imagePopup.querySelector('.image-popup__comment');
-  const imageClose = imagePopup.querySelector('.image-popup__close');
-  imagePopupImage.src = link;
-  imagePopupComment.textContent = name;
-  imageClose.addEventListener('click', function(evt){
-  evt.target.parentNode.parentNode.remove()
-  });
-  bodyPage.prepend(imagePopup);
-}
+openPopup(popupImage);
+const imagePopupComment = popupImage.querySelector('.image-popup__comment');
+const imagePopupImage = popupImage.querySelector('.image-popup__image');
+imagePopupImage.src = link;
+imagePopupComment.textContent = name
+};
 
 
-addButton.addEventListener ('click', function() {
+newCardButton.addEventListener ('click', function() {
   openPopup(popupNewCard);
 });
 
-editButton.addEventListener ('click', function() {
+authorButton.addEventListener ('click', function() {
   openPopup(popupAuthor)
   nameInput.value = authorName.textContent;
   jobInput.value = authorAbout.textContent;
 });
 
-closeButtonAuthor.addEventListener ('click', function() {closePopup(popupAuthor)});
-closeButtonNewCard.addEventListener ('click', function() {closePopup(popupNewCard)});
+authorCloseButton.addEventListener ('click', function() {closePopup(popupAuthor)});
+newCardCloseButton.addEventListener ('click', function() {closePopup(popupNewCard)});
+imageCloseButton.addEventListener ('click', function() {closePopup(popupImage)});
+
 formAuthor.addEventListener('submit', formSubmitHandlerAuthor);
 formNewCard.addEventListener('submit', formSubmitHandlerNewCard);
 

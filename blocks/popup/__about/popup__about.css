@@ -8,8 +8,8 @@
     font-size: 14px;
     line-height: 17px;
     color: #000000;
-    margin: 30px auto 48px;
-    padding-bottom: 8px;
+    margin: 13px auto auto;
+    padding-bottom: 5px;
     display:flex;
     outline:none;
 }
@@ -19,8 +19,4 @@
         width: 238px;
         margin: 30px auto 45px;
     }
-    }
-
-    .popup__about:focus {
-        outline: rgb(22, 157, 241) 2px solid;
     }

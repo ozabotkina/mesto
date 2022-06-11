@@ -16,20 +16,17 @@ const containerElements = document.querySelector('.elements');
 const bodyPage = document.querySelector('.page');
 const popupImage = document.querySelector('.image-popup')
 const imageCloseButton = popupImage.querySelector('.image-popup__close')
+const popupSelector = document.querySelector('.popup');
+const allPopups = Array.from(document.querySelectorAll('.popup'));
+
 
 function openPopup(name) {
   name.classList.add('popup_opened');
+  document.addEventListener('keydown', function(evt){if(evt.key === 'Escape'){closePopup(name)}});
 }
 
 function closePopup(name) {
   name.classList.remove('popup_opened');
-}
-
-function formSubmitHandler (evt) {
-  evt.preventDefault(); 
-  authorName.textContent = nameInput.value; 
-  authorAbout.textContent = jobInput.value;
-  closePopup(popupAuthor);
 }
 
 function addCard(link, name) 
@@ -98,7 +95,7 @@ newCardButton.addEventListener ('click', function() {
 });
 
 authorButton.addEventListener ('click', function() {
-  openPopup(popupAuthor)
+  openPopup(popupAuthor);
   nameInput.value = authorName.textContent;
   jobInput.value = authorAbout.textContent;
 });
@@ -110,8 +107,9 @@ imageCloseButton.addEventListener ('click', function() {closePopup(popupImage)})
 formAuthor.addEventListener('submit', formSubmitHandlerAuthor);
 formNewCard.addEventListener('submit', formSubmitHandlerNewCard);
 
-
-
+allPopups.forEach((popupSelector) => popupSelector.addEventListener ('click', function(evt){
+if (evt.target === popupSelector) {closePopup(popupSelector)};
+}));
 
 
 

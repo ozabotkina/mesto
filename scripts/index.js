@@ -18,16 +18,22 @@ const popupImage = document.querySelector('.image-popup')
 const imageCloseButton = popupImage.querySelector('.image-popup__close')
 const popupSelector = document.querySelector('.popup');
 const allPopups = Array.from(document.querySelectorAll('.popup'));
+const imagePopupComment = popupImage.querySelector('.image-popup__comment');
+const imagePopupImage = popupImage.querySelector('.image-popup__image');
+
+const closeByEscPress = (evt, popup) => {if(evt.key === 'Escape'){closePopup(popup)}};
 
 
-function openPopup(name) {
-  name.classList.add('popup_opened');
-  document.addEventListener('keydown', function(evt){if(evt.key === 'Escape'){closePopup(name)}});
-}
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', function(evt){closeByEscPress(evt, popup);});
+};
 
-function closePopup(name) {
-  name.classList.remove('popup_opened');
-}
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', function(evt){closeByEscPress(evt, popup);});
+
+};
 
 function addCard(link, name) 
   {
@@ -38,6 +44,7 @@ function addCard(link, name)
     const cardLike = cardElement.querySelector('.element__like');
     const cardTrash = cardElement.querySelector('.element__trash');
     cardImage.src = link;
+    cardImage.alt = `${name}`;
     cardTitle.textContent = name;
     cardLike.addEventListener ('click', function(evt)
       {
@@ -55,14 +62,11 @@ function addCard(link, name)
     return cardElement;
   };
 
-
 function addInitialCards()
 {
-  for (let i = 0; i < initialCards.length; i++)
-    {
-    containerElements.append(addCard(initialCards[i].link, initialCards[i].name));
-    }
+initialCards.forEach((initialCard) => {containerElements.append(addCard(initialCard.link, initialCard.name))})
 };
+
 
 addInitialCards();
 
@@ -83,10 +87,10 @@ function formSubmitHandlerNewCard (evt) {
   
 function createImagePopup(link, name) {
 openPopup(popupImage);
-const imagePopupComment = popupImage.querySelector('.image-popup__comment');
-const imagePopupImage = popupImage.querySelector('.image-popup__image');
 imagePopupImage.src = link;
-imagePopupComment.textContent = name
+imagePopupImage.alt = `${name}`;
+imagePopupComment.textContent = name;
+
 };
 
 
@@ -109,8 +113,4 @@ formNewCard.addEventListener('submit', formSubmitHandlerNewCard);
 
 allPopups.forEach((popupSelector) => popupSelector.addEventListener ('click', function(evt){
 if (evt.target === popupSelector) {closePopup(popupSelector)};
-}));
-
-
-
-
+}))

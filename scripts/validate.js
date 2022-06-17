@@ -60,11 +60,19 @@ const setEventListeners = (formSelector) => {
    });
 };
 
+
+
 const enableValidation = (validationConfig) => {
   const allForms = Array.from(document.querySelectorAll(validationConfig.formSelector));
+
   allForms.forEach((formSelector) => {
     formSelector.addEventListener('submit', (evt) => {
       evt.preventDefault();
+      const submitButtonSelector = formSelector.querySelector(validationConfig.submitButtonSelector);
+
+      submitButtonSelector.classList.add(validationConfig.inactiveButtonClass);
+      submitButtonSelector.disabled = true;
+  
     });
     setEventListeners(formSelector);
   });
@@ -72,4 +80,5 @@ const enableValidation = (validationConfig) => {
 
 enableValidation(validationConfig);
 
-document.addEventListener('submit', function(){enableValidation(validationConfig)});
+
+// document.addEventListener('submit', function(){enableValidation(validationConfig)});

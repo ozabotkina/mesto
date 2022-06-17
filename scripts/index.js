@@ -21,18 +21,19 @@ const allPopups = Array.from(document.querySelectorAll('.popup'));
 const imagePopupComment = popupImage.querySelector('.image-popup__comment');
 const imagePopupImage = popupImage.querySelector('.image-popup__image');
 
-const closeByEscPress = (evt, popup) => {if(evt.key === 'Escape'){closePopup(popup)}};
-
+const closeByEscPress = (evt) => {
+  const openedPopup = document.querySelector('.popup_opened');
+  if(evt.key === 'Escape'){closePopup(openedPopup)}
+};
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', function(evt){closeByEscPress(evt, popup);});
+  document.addEventListener('keydown', closeByEscPress);
 };
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', function(evt){closeByEscPress(evt, popup);});
-
+  document.removeEventListener('keydown', closeByEscPress);
 };
 
 function addCard(link, name) 

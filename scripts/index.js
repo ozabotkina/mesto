@@ -1,20 +1,33 @@
-import {Card} from './card.js';
+import {Card} from './Сard.js';
+import {FormValidator} from './FormValidator.js';
+
 
 const authorButton = document.querySelector ('.edit-button');
 const authorName = document.querySelector('.profile__name');
 const authorAbout = document.querySelector('.profile__about');
 const newCardButton = document.querySelector('.add-button');
 const popupAuthor = document.querySelector('.popup_author')
-const formAuthor = popupAuthor.querySelector('.popup__container');
+export const formAuthor = popupAuthor.querySelector('.popup__container');
 const jobInput = formAuthor.querySelector('.popup__about');
 const nameInput = formAuthor.querySelector('.popup__name');
 const authorCloseButton = popupAuthor.querySelector ('.popup__close-icon');
 const popupNewCard = document.querySelector('.popup_new-card');
 const newCardCloseButton = popupNewCard.querySelector ('.popup__close-icon');
-const formNewCard = popupNewCard.querySelector('.popup__container');
+export const formNewCard = popupNewCard.querySelector('.popup__container');
 const cardNameInput = formNewCard.querySelector('.popup__name');
 const cardLinkInput = formNewCard.querySelector('.popup__about');
 const allPopups = Array.from(document.querySelectorAll('.popup'));
+
+
+export const validationConfig = 
+{
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}; 
 
 const closeByEscPress = (evt) => {
   const openedPopup = document.querySelector('.popup_opened');
@@ -31,10 +44,6 @@ export function closePopup(popup) {
   document.removeEventListener('keydown', closeByEscPress);
 };
 
-
-// НОВОЕ
-
-
 function addInitialCards() {
   initialCards.forEach((initialCard) => {
   const card = new Card (initialCard.link, initialCard.name, '#card-element');
@@ -44,15 +53,19 @@ function addInitialCards() {
 
 addInitialCards();
 
+const formAuthorValidator = new FormValidator(validationConfig, formAuthor);
+formAuthorValidator.enableValidation();
+const formNewCardValidator = new FormValidator(validationConfig, formNewCard);
+formNewCardValidator.enableValidation();
+
 function formSubmitHandlerNewCard (evt) {
   evt.preventDefault(); 
   const card = new Card (cardLinkInput.value, cardNameInput.value, '#card-element');
   document.querySelector('.elements').prepend(card.generateCard());
+  cardLinkInput.value = '';
+  cardNameInput.value = '';
   closePopup(popupNewCard);
 }
-
-// КОНЕЦ НОВОГО
-
 
 function formSubmitHandlerAuthor (evt) {
   evt.preventDefault(); 

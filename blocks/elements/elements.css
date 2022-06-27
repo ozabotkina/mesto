@@ -1,4 +1,5 @@
 .elements {
+    min-height: 50vh;
     margin: 51px auto 66px;
     display:grid;
     row-gap:20px;

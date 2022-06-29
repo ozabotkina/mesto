@@ -47,7 +47,6 @@ export class Card {
       imageInPopup.src = this._image;
       imageInPopup.alt = this._title;
       commentInPopup.textContent = this._title;
-      closeInPopup.addEventListener('click', () => {closePopup(popupImage)});
       openPopup(popupImage);
 
     };

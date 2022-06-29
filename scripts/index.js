@@ -17,32 +17,39 @@ const formNewCard = popupNewCard.querySelector('.popup__container');
 const cardNameInput = formNewCard.querySelector('.popup__name');
 const cardLinkInput = formNewCard.querySelector('.popup__about');
 const allPopups = Array.from(document.querySelectorAll('.popup'));
+const elementHolder = document.querySelector('.elements');
+
+function createCard(l,n,e) {
+  const card = new Card(l,n,e);
+  return card;
+};
+
 
 
 function addInitialCards() {
   initialCards.forEach((initialCard) => {
-  const card = new Card (initialCard.link, initialCard.name, '#card-element');
-  document.querySelector('.elements').append(card.generateCard());
+  elementHolder.append(createCard(initialCard.link, initialCard.name, '#card-element').generateCard());
   })
 };
 
 addInitialCards();
+
 
 const formAuthorValidator = new FormValidator(validationConfig, formAuthor);
 formAuthorValidator.enableValidation();
 const formNewCardValidator = new FormValidator(validationConfig, formNewCard);
 formNewCardValidator.enableValidation();
 
-function formSubmitHandlerNewCard (evt) {
+function submitHandlerNewCard (evt) {
   evt.preventDefault(); 
-  const card = new Card (cardLinkInput.value, cardNameInput.value, '#card-element');
-  document.querySelector('.elements').prepend(card.generateCard());
+  elementHolder.prepend(createCard(cardLinkInput.value, cardNameInput.value, '#card-element').generateCard());
+  closePopup(popupNewCard);
   cardLinkInput.value = '';
   cardNameInput.value = '';
-  closePopup(popupNewCard);
+
 }
 
-function formSubmitHandlerAuthor (evt) {
+function submitHandlerAuthor (evt) {
   evt.preventDefault(); 
   authorName.textContent = nameInput.value; 
   authorAbout.textContent = jobInput.value;
@@ -65,8 +72,8 @@ closeInPopup.addEventListener('click', () => {closePopup(popupImage)});
 authorCloseButton.addEventListener ('click', function() {closePopup(popupAuthor)});
 newCardCloseButton.addEventListener ('click', function() {closePopup(popupNewCard)});
 
-formAuthor.addEventListener('submit', formSubmitHandlerAuthor);
-formNewCard.addEventListener('submit', formSubmitHandlerNewCard);
+formAuthor.addEventListener('submit', submitHandlerAuthor);
+formNewCard.addEventListener('submit', submitHandlerNewCard);
 
 allPopups.forEach((popupSelector) => popupSelector.addEventListener ('click', function(evt){
 if (evt.target === popupSelector) {closePopup(popupSelector)};

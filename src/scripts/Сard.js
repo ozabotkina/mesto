@@ -1,5 +1,5 @@
 
-import { popupImage, imageInPopup, commentInPopup, closeInPopup, closePopup, openPopup } from "./shared.js";
+import { PopupWithImage } from "./PopupWithImage.js";
 
 export class Card {
     constructor(link, name, cardSelector){
@@ -23,8 +23,9 @@ export class Card {
       this._setEventListeners();
       this._imageSelector.src = this._image;
       this._imageSelector.alt = this._title;
-      this._element.querySelector('.element__title').textContent = this._title;   
+      this._element.querySelector('.element__title').textContent = this._title;  
       return this._element;
+     
     }
     
     _setEventListeners() {
@@ -44,10 +45,8 @@ export class Card {
     };
   
     _createImagePopup() {
-      imageInPopup.src = this._image;
-      imageInPopup.alt = this._title;
-      commentInPopup.textContent = this._title;
-      openPopup(popupImage);
+      const popupImage = new PopupWithImage('.image-popup', this._image, this._title);
+      popupImage.open();
 
     };
   }

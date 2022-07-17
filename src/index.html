@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="pages/index.css">
+  <!-- убрать -->
+  <link rel="stylesheet" href="./pages/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto Russia</title>
 </head>
@@ -59,9 +60,9 @@
       <button class="popup__close-icon interactive" type="button"></button>
       <form class="popup__container popup__form" name="NewCard" action="formSubmitHandlerNewCard" method="post" novalidate>
         <h2 class="popup__title">Новое место</h2>
-        <input type="text" id="cardname" name="new-card__name" class="popup__name popup__input" placeholder="Название" minlength="2" maxlength="30" required>
+        <input type="text" id="cardname" name="cardname" class="popup__name popup__input" placeholder="Название" minlength="2" maxlength="30" required>
         <span class="popup__error cardname-error popup__error_visible"></span>
-        <input type="url" id="link" name="new-card__url" class="popup__about popup__input" placeholder="Ссылка на картинку" required>
+        <input type="url" id="link" name="cardlink" class="popup__about popup__input" placeholder="Ссылка на картинку" required>
         <span class="popup__error link-error popup__error_visible"></span>
         <button type="submit" class="popup__button">Создать</button>
       </form>
@@ -69,15 +70,15 @@
 
       <div class="popup image-popup">
         <div class="image-popup__wrap">
-          <button class="image-popup__close interactive" type="button"></button>
+          <button class="popup__close-icon image-popup__close interactive" type="button"></button>
           <img class="image-popup__image" src="#" alt="">
           <p class="image-popup__comment"></p>
         </div>
       </div>  
 
   </main>
-  <script type="module" src="scripts/index.js"></script>
-  <script src="scripts/cards.js"></script>
+  <script type="module" src="index.js"></script>
+  <script src="./scripts/cards.js"></script>
 
 </body>
 </html>

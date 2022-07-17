@@ -27,3 +27,6 @@ export function createCard(link,name,element) {
 export function createImagePopup(image, title) {
   const popupImage = new PopupWithImage('.image-popup', image, title);
   popupImage.open();};
+
+
+

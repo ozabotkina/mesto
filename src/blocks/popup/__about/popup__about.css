@@ -17,6 +17,6 @@
 @media screen and (max-width:680px){
     .popup__about{
         width: 238px;
-        margin: 30px auto 45px;
+        margin:10px auto 0px;
     }
     }

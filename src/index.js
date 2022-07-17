@@ -57,3 +57,4 @@ jobInput.value = userInfo._initialValues.about;
 });
 
 cardsList.drawElement();
+

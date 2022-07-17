@@ -1,6 +1,7 @@
 .popup__error {
     width: 358px;
     min-height: 30px;
+    max-height: 30px;
     border:none;
     font-family: 'Inter';
     font-style: normal;

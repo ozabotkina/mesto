@@ -10,7 +10,7 @@ import { FormValidator } from './components/FormValidator.js';
 const cardsList = new Section ({
   items: initialCards,
   renderer: (item) => {
-    const cardElement = createCard(item.link, item.name, '#card-element');    
+    const cardElement = createCard(item.link, item.name, '#card-element', {handleCardClick: () => {createImagePopup(item.link, item.name)}});    
     cardsList.addItem(cardElement); 
   },},
   elementHolder
@@ -20,7 +20,8 @@ const cardsList = new Section ({
 const popupNewCard = new PopupWithForm(
   '.popup_new-card', 
   {submitHandler: () => {
-    elementHolder.prepend(createCard(popupNewCard._formValues.cardlink, popupNewCard._formValues.cardname, '#card-element'));
+    elementHolder.prepend(createCard(popupNewCard._formValues.cardlink, popupNewCard._formValues.cardname, '#card-element', {handleCardClick: () => {createImagePopup(popupNewCard._formValues.cardlink, popupNewCard._formValues.cardname)}}
+    ));
     popupNewCard.close();
   }}
 );
@@ -52,7 +53,7 @@ authorButton.addEventListener ('click', function() {
   const nameInput = popupAuthor._form.querySelector('.popup__name');
   nameInput.value = userInfo._initialValues.name;
   jobInput.value = userInfo._initialValues.about;  
-popupAuthor.open();
+  popupAuthor.open();
 });
 
 cardsList.drawElement();

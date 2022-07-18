@@ -19,14 +19,17 @@ export const authorName = document.querySelector('.profile__name');
 export const authorAbout = document.querySelector('.profile__about');
 
 
-export function createCard(link,name,element) {
-  const card = new Card(link,name,element);
+export function createCard(link,name,element,handleCardClick) {
+  const card = new Card(link,name,element,handleCardClick);
   return card.generateCard();
 };
 
 export function createImagePopup(image, title) {
   const popupImage = new PopupWithImage('.image-popup', image, title);
-  popupImage.open();};
+
+  popupImage.open()
+  
+  ;};
 
 
 

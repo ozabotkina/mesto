@@ -20,7 +20,7 @@ export const authorAbout = document.querySelector('.profile__about');
 
 
 export function createCard(link,name,element) {
-  const card = new Card(link,name, element);
+  const card = new Card(link,name,element);
   return card.generateCard();
 };
 

@@ -4,6 +4,7 @@ import {validationConfig, authorButton, newCardButton, elementHolder, createCard
 import { Section } from './components/Section.js';
 import { PopupWithForm } from './components/PopupWithForm.js';
 import { UserInfo } from './components/UserInfo.js';
+import { FormValidator } from './components/FormValidator.js';
 
 
 const cardsList = new Section ({
@@ -16,51 +17,43 @@ const cardsList = new Section ({
 );
 
 
+const popupNewCard = new PopupWithForm(
+  '.popup_new-card', 
+  {submitHandler: () => {
+    elementHolder.prepend(createCard(popupNewCard._formValues.cardlink, popupNewCard._formValues.cardname, '#card-element'));
+    popupNewCard.close();
+  }}
+);
 
+const userInfo = new UserInfo({name:authorName, about:authorAbout});
+userInfo.getUserInfo();
 
+const popupAuthor = new PopupWithForm(
+  '.popup_author',
+  {submitHandler: () => {
+    popupAuthor._getInputValues();
+    userInfo.setUserInfo(popupAuthor);
+    popupAuthor.close();
+  }}
+);
 
+const formAuthorValidator = new FormValidator(validationConfig, popupAuthor._form);
+formAuthorValidator.enableValidation();
+const formNewCardValidator = new FormValidator(validationConfig, popupNewCard._form);
+formNewCardValidator.enableValidation();
 
-// const popupNewCard = new PopupWithForm(
-//   '.popup_new-card', 
-//   {submitHandler: () => {
-//     elementHolder.prepend(createCard(popupNewCard._formValues.cardlink, popupNewCard._formValues.cardname, '#card-element'));
-//     popupNewCard.close();
-//   }}
-// );
+newCardButton.addEventListener ('click', function() {
+  popupNewCard.open();
+});
 
-// const userInfo = new UserInfo({name:authorName, about:authorAbout});
-// userInfo.getUserInfo();
-
-
-
-// const popupAuthor = new PopupWithForm(
-//   '.popup_author',
-//   {submitHandler: () => {
-//     popupAuthor._getInputValues();
-//     console.log(popupAuthor._formValues);
-//     userInfo.setUserInfo(popupAuthor);
-//     popupAuthor.close();
-//   }}
-// );
-
-
-// const formAuthorValidator = new FormValidator(validationConfig, popupAuthor._form);
-// formAuthorValidator.enableValidation();
-// const formNewCardValidator = new FormValidator(validationConfig, popupNewCard._form);
-// formNewCardValidator.enableValidation();
-
-// newCardButton.addEventListener ('click', function() {
-//   popupNewCard.open();
-// });
-
-// authorButton.addEventListener ('click', function() {
-// popupAuthor.open();
-// userInfo.getUserInfo();
-// const jobInput = popupAuthor._form.querySelector('.popup__about');
-// const nameInput = popupAuthor._form.querySelector('.popup__name');
-// nameInput.value = userInfo._initialValues.name;
-// jobInput.value = userInfo._initialValues.about;
-// });
+authorButton.addEventListener ('click', function() {
+  userInfo.getUserInfo();
+  const jobInput = popupAuthor._form.querySelector('.popup__about');
+  const nameInput = popupAuthor._form.querySelector('.popup__name');
+  nameInput.value = userInfo._initialValues.name;
+  jobInput.value = userInfo._initialValues.about;  
+popupAuthor.open();
+});
 
 cardsList.drawElement();
 

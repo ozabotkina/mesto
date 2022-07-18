@@ -9,12 +9,7 @@ import { UserInfo } from './components/UserInfo.js';
 const cardsList = new Section ({
   items: initialCards,
   renderer: (item) => {
-    // const card = new Card(item.link, item.name, '#card-element');
-    // const cardElement = card.generateCard();
-
-    const cardElement = createCard(item.link, item.name, '#card-element');
-    console.log(item.name);
-    
+    const cardElement = createCard(item.link, item.name, '#card-element');    
     cardsList.addItem(cardElement); 
   },},
   elementHolder

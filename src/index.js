@@ -1,5 +1,5 @@
-// import './pages/index.css';
-import { Card } from './components/Сard.js'
+import './pages/index.css';
+import { initialCards } from './components/cards';
 import {validationConfig, authorButton, newCardButton, elementHolder, createCard, createImagePopup, authorAbout, authorName} from './components/shared.js';
 import { Section } from './components/Section.js';
 import { PopupWithForm } from './components/PopupWithForm.js';

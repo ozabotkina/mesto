@@ -1,5 +1,4 @@
 
-
 export class Card {
     constructor(link, name, cardSelector, {handleCardClick}){
       this._image = link;
@@ -30,7 +29,8 @@ export class Card {
     
     _setEventListeners() {
       this._imageSelector = this._element.querySelector('.element__image');
-      this._element.querySelector('.element__like').addEventListener('click', () => {this._like()});
+      this._likeElement = this._element.querySelector('.element__like');
+      this._likeElement.addEventListener('click', () => {this._like()});
       this._element.querySelector('.element__trash').addEventListener('click', () => {this._sendToTrash()});
       this._imageSelector.addEventListener('click', () => {
       this._handleCardClick();
@@ -39,7 +39,7 @@ export class Card {
     }
   
     _like() {
-      this._element.querySelector('.element__like').classList.toggle('element__like_active');
+      this._likeElement.classList.toggle('element__like_active');
     };
   
     _sendToTrash() {

@@ -1,22 +1,21 @@
-import { authorName, authorAbout } from "./shared.js";
 
 export class UserInfo {
-    constructor({name, about}){
-        this._name = name;
-        this._about = about;  
+    constructor({nameSelector, aboutSelector}){
+        this._name = document.querySelector(nameSelector);
+        this._about = document.querySelector(aboutSelector);  
     };
   
  getUserInfo(){
-    this._initialValues = {};
-    this._initialValues.name = this._name.textContent;
-    this._initialValues.about = this._about.textContent;
-    return this._initialValues;
+    this.initialValues = {};
+    this.initialValues.name = this._name.textContent;
+    this.initialValues.about = this._about.textContent;
+    return this.initialValues;
    
  };
  
- setUserInfo(formSelector){
-     this._name.textContent = formSelector._formValues.popup__name;
-     this._about.textContent = formSelector._formValues.popup__about;
+ setUserInfo(name, about){
+     this._name.textContent = name;
+     this._about.textContent = about;
  };
 
 }

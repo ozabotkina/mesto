@@ -1,7 +1,7 @@
 export class Section {
     constructor ({items, renderer}, containerSelector) {
       this._initialArray = items;
-      this._container = containerSelector;
+      this.container = document.querySelector(containerSelector);
       this._renderer = renderer;
     };
   
@@ -9,7 +9,7 @@ export class Section {
       this._initialArray.forEach(item => this._renderer(item));
   };
   addItem(element){
-      this._container.append(element)
+      this.container.prepend(element)
   }
   }
   

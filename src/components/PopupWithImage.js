@@ -16,6 +16,5 @@ open(image, title){
     this._imageInPopup.src = image;
     this._imageInPopup.alt = title;
     this._commentInPopup.textContent = title;
-    this._closeButton.addEventListener('click', () => {this.close});
 };
 }

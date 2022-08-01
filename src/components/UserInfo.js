@@ -5,7 +5,10 @@ export class UserInfo {
         this._about = document.querySelector(aboutSelector);  
     };
   
+
+    
  getUserInfo(){
+
     this.initialValues = {};
     this.initialValues.name = this._name.textContent;
     this.initialValues.about = this._about.textContent;

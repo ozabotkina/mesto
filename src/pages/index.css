@@ -40,3 +40,6 @@
 @import url(../blocks/popup/__error/popup__error_visible.css);
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__button/popup__button_disabled.css);
+@import url(../blocks/element/__like-info/element__like-info.css);
+@import url(../blocks/element/__like-number/element__like-number.css);
+@import url(../blocks/popup/__container/_delete-card/popup__container_delete-card.css);

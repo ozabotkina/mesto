@@ -1,5 +1,5 @@
 
-const myId = 'ac88d69fff51275f50bd0add';
+export const myId = 'ac88d69fff51275f50bd0add';
 
 import {Card} from '../components/Сard.js';
 import { Section } from '../components/Section.js';
@@ -28,99 +28,38 @@ export const authorAbout = document.querySelector('.profile__about');
 export const jobInput = document.querySelector('.popup__about');
 export const nameInput = document.querySelector('.popup__name');
 export const authorAvatar = document.querySelector('.profile__avatar');
+export const avatarEdit = document.querySelector('.profile__avatar-wrap');
 
-function createCard ({link, name, likes}, handleCardClick, handleTrashClick, ownerId) {
+function createCard ({link, name, likes, _id}, handleCardClick, handleTrashClick, ownerId, api) {
   if(ownerId === myId){ 
-    const card = new UserCard ({link,name,likes},'#user-card-element',handleCardClick,handleTrashClick);
-    return card.generateCard();
+    const card = new UserCard ({link,name,likes, _id},'#user-card-element', handleCardClick, handleTrashClick);
+    card.isLiked(myId);
+    return card.generateCard(myId,api)
+  ;
   }
   else {
-    const card = new Card ({link,name,likes},'#card-element',handleCardClick);
-    return card.generateCard();
+    const card = new Card ({link,name,likes, _id},'#card-element',handleCardClick);
+    card.isLiked(myId);
+    return card.generateCard(myId,api);
   }
-}
-export function fetchInitialData(){
-  fetch('https://nomoreparties.co/v1/cohort-46/users/me', {
-    method:'GET',
-    headers: {
-      authorization: '24287173-ba31-4a1d-8c0b-4b3b6920eaaf'
-      }
-    })
-    .then(res => res.json())
-    .then((result) => {
-      console.log(result);
-      authorName.textContent = result.name;
-      authorAbout.textContent = result.about;
-      authorAvatar.src = result.avatar;
-      })
-    .catch((err) => {
-      console.log(err);
-      }); 
-    };
-
-  export const fetchInitialCards = (popupImage, popupDelete) => {
-    return fetch ('https://mesto.nomoreparties.co/v1/cohort-46/cards', {
-      method:'GET',
-      headers: {
-        authorization: '24287173-ba31-4a1d-8c0b-4b3b6920eaaf'
-        }
-     })
-     .then((res) => {
-      return res.json()})
-     .then((data) => {
-      console.log(data);
-      const cardsList = new Section ({
-        items: data,
-        renderer: (item) => {
-          const cardElement = 
-          createCard(
-            item, 
-            {handleCardClick: () => {popupImage.open(item.link, item.name)}},  
-            {handleTrashClick: () => {popupDelete.open()}},
-            item.owner._id);    
-          cardsList.addItem(cardElement); 
-        },},
-        '.elements'
-        );
-        cardsList.drawElement();
-     })
-     .catch((err) => {
-      console.log(err); 
-    }); 
-
-    };
   
-    export const changeAuthorInfo = (name,about) => {
-      return fetch('https://nomoreparties.co/v1/cohort-46/users/me', {
-        method: 'PATCH',
-        headers: {
-          authorization: '24287173-ba31-4a1d-8c0b-4b3b6920eaaf',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-        name: name,
-        about: about
-        })
-      });
-    };
+};
 
-    export const addNewCard = (link, name) => {
-      return fetch ('https://mesto.nomoreparties.co/v1/cohort-46/cards', {
-        method:'POST',
-        headers: {
-        authorization: '24287173-ba31-4a1d-8c0b-4b3b6920eaaf',
-        'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-          name: name,
-          link: link
-        })
-      })
-        .then(res => {
-          if (res.ok) {
-            console.log(res);
-          }
-        })
-        .catch((err)=>{console.log(err)})
-     };
-    
+export function createCardList(data, popupImage, popupDelete, api){
+const cardsList = new Section ({
+  items: data,
+  renderer: (item) => {
+    const cardElement = 
+    createCard(
+      item, 
+      {handleCardClick: () => {popupImage.open(item.link, item.name)}},  
+      {handleTrashClick: () => {popupDelete.open(item._id)}},
+      item.owner._id,
+      api
+      );    
+    cardsList.addItem(cardElement); 
+  },},
+  '.elements'
+  );
+  cardsList.drawElement();
+}

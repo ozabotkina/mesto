@@ -1,11 +1,12 @@
 
 export class Card {
-    constructor({link, name, likes}, cardSelector, {handleCardClick}){
+    constructor({link, name, likes, _id}, cardSelector, {handleCardClick}){
       this._image = link;
       this._title = name;
       this._likes = likes;
       this._cardSelector = cardSelector;
       this._handleCardClick = handleCardClick;
+      this._card = _id;
     };
   
     _getTemplate() {
@@ -18,53 +19,54 @@ export class Card {
       return cardElement;
     }
   
-    generateCard() {
+    generateCard(myId, api) {
       this._element = this._getTemplate();
-      this._setEventListeners();
+      this._setEventListeners(myId, api);
       this._imageElement.src = this._image;
       this._imageElement.alt = this._title;
       this._element.querySelector('.element__title').textContent = this._title;  
-      this._element.querySelector('.element__like-number').textContent = this._likes.length;
+      this._likesNum = this._element.querySelector('.element__like-number')
+      this._likesNum.textContent = this._likes.length;
+      if(this.isLiked(myId)){this._likeElement.classList.toggle('element__like_active')}
       return this._element;
      
     }
     
-    _setEventListeners() {
+    _setEventListeners(myId, api) {
       this._imageElement = this._element.querySelector('.element__image');
       this._likeElement = this._element.querySelector('.element__like');
-      this._likeElement.addEventListener('click', () => {this._like()});
-      // this._element.querySelector('.element__trash').addEventListener('click', () => {this._handleTrashClick()});
+      this._likeElement.addEventListener('click', () => {this._like(myId,api); 
+      });
       this._imageElement.addEventListener('click', () => {
       this._handleCardClick();
       
       });
     }
   
-    _like() {
-      this._likeElement.classList.toggle('element__like_active');
-    };
-  
-    _sendToTrash() {
-      // this._element.remove();
-      // this._element = null;
-    // this._popupDelete.open;
+    isLiked(myId){
+      const likers = this._likes.map(function(i){return i._id});
+      console.log(likers);
+      for(let i=0; i<likers.length; i++) {
+        if(myId === likers[i]) {  
+        return true;
+        }
+        else{
+          return false}
     }
+  }
 
-  // _toggleTrashBin(myId) {
-  //   this._trashBin = this._element.querySelector('.element__trash');
-  //   if(this.owner._id === myId){
-  //     this._trashBin.classList.add('.element__trash_active');
-  //     this._trashBin.addEventListener('click', () => {this._handleTrashClick()});
-  //   }
-  //   else {
-  //     console.log(this.owner._id);
-  //     console.log(this.owner.name);
 
-  //   }
-
-  
+    _like(myId, api) {
+      if (this.isLiked(myId)){
+        this._likeElement.classList.toggle('element__like_active');
+        api.deleteLike(this._card, this._likesNum);
+      }
+      else {
+        this._likeElement.classList.toggle('element__like_active');
+        api.createLike(this._card, this._likesNum);
+        }  
     }
   
 
 
-
+  }

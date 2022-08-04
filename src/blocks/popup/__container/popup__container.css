@@ -14,3 +14,11 @@
     height: 322px;
     }
 }
+
+.popup__container_avatar {
+    height: 272px;
+}
+
+.popup__container_delete-card {
+    height: 181px;
+}

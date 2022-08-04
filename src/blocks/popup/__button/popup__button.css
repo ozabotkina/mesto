@@ -35,3 +35,9 @@
 .popup__button_delete-card {
     margin: 38px 36px 36px 36px;
 }
+
+@media screen and (max-width:680px){
+    .popup__button_delete-card {    
+    margin: 38px 22px 25px 22px;
+
+}}

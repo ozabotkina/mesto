@@ -25,6 +25,7 @@ constructor(popupSelector, {submitHandler}){
        this.form.addEventListener
        ('submit', (evt) => {
         evt.preventDefault();
+        this.button.textContent = "Сохранение...";
         this._submit(this._getInputValues());
        }
        );  

@@ -1,9 +1,6 @@
 
-export const myId = 'ac88d69fff51275f50bd0add';
 
 import {Card} from '../components/Сard.js';
-import { Section } from '../components/Section.js';
-import { UserCard } from '../components/UserCard.js';
 
 export const validationConfig = 
 {
@@ -30,36 +27,20 @@ export const nameInput = document.querySelector('.popup__name');
 export const authorAvatar = document.querySelector('.profile__avatar');
 export const avatarEdit = document.querySelector('.profile__avatar-wrap');
 
-function createCard ({link, name, likes, _id}, handleCardClick, handleTrashClick, ownerId, api) {
-  if(ownerId === myId){ 
-    const card = new UserCard ({link,name,likes, _id},'#user-card-element', handleCardClick, handleTrashClick);
-    card.isLiked(myId);
-    return card.generateCard(myId,api)
-  ;
-  }
-  else {
-    const card = new Card ({link,name,likes, _id},'#card-element',handleCardClick);
-    card.isLiked(myId);
-    return card.generateCard(myId,api);
-  }
-  
-};
 
-export function createCardList(data, popupImage, popupDelete, api){
-const cardsList = new Section ({
-  items: data,
-  renderer: (item) => {
-    const cardElement = 
-    createCard(
-      item, 
-      {handleCardClick: () => {popupImage.open(item.link, item.name)}},  
-      {handleTrashClick: () => {popupDelete.open(item._id)}},
-      item.owner._id,
-      api
-      );    
-    cardsList.addItem(cardElement); 
-  },},
-  '.elements'
-  );
-  cardsList.drawElement();
-}
+export function createCard (
+  {link, name, likes, _id, owner}, 
+  handleCardClick, 
+  handleTrashClick,
+  handleLikeClick,
+  myId) 
+  {  const card = new Card (
+      {link, name, likes, _id, owner},
+      '#card-element', 
+      handleCardClick, 
+      handleTrashClick,
+      handleLikeClick,
+      myId);
+
+    return card.generateCard()  
+};

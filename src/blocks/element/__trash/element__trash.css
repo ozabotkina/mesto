@@ -11,3 +11,6 @@
     border:0;
 }
 
+.element__trash_inactive {
+    display:none;
+}

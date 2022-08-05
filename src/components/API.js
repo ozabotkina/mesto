@@ -5,23 +5,22 @@ this._baseUrl = baseUrl;
 this._headers = headers;
     }
 
-fetchInitialData(name,about,avatar){
+_checkAnswer(res){
+    if(res.ok){return res.json();}
+    return Promise.reject(res.status);
+}
+
+fetchInitialData(){
     return fetch(`${this._baseUrl}/users/me`, {
         method:'GET',
         headers: this._headers
-        })
-        .then(res => res.json())
-        .then((result) => {
-            name.textContent = result.name;
-            about.textContent = result.about;
-            avatar.src = result.avatar;
-            })
-        .catch((err) => {
-            console.log(err);
-            }); 
-          };
-      
-changeAuthorInfo = (name,about, popup) => {
+        })   
+    .then ((res) => {return (this._checkAnswer(res))})
+    .then ((data) => {return data})
+}
+
+
+changeAuthorInfo = (name,about) => {
     return fetch(`${this._baseUrl}/users/me`, {
         method: 'PATCH',
         headers: this._headers,
@@ -29,31 +28,22 @@ changeAuthorInfo = (name,about, popup) => {
         name: name,
         about: about
         })
-        
         })
-        .catch((err) => {
-            console.log(err);
-            }); 
-
+        .then ((res) => {return (this._checkAnswer(res))})
         };
-      
-fetchInitialCards = ({createCardList}) => {
-    this.createCardList = createCardList;
+ 
+        
+fetchInitialCards = () => {
     return fetch (`${this._baseUrl}/cards`, {
         method:'GET',
         headers: this._headers
         })
-        .then((res) => {
-        return res.json()})
-        .then((data) => {
-        this.createCardList(data);
-        })
-        .catch((err) => {
-        console.log(err); 
-        }); 
-        };
+    .then ((res) => { return (this._checkAnswer(res)); })
+    .then ((data) => {return data})
+    };
         
- addNewCard = (link, name, myId, api) => {
+
+ addNewCard = (link, name) => {
     return fetch (`${this._baseUrl}/cards`, {
         method:'POST',
         headers: this._headers,
@@ -62,10 +52,8 @@ fetchInitialCards = ({createCardList}) => {
         link: link
         })
         })
-        .then(res => res.json())
-        .catch((err)=>{console.log(err)})
-        .finally (() => {location.reload()})
-
+        .then ((res) => {return (this._checkAnswer(res))})
+        .then ((data) => {return data})
         };
           
 deleteCard = (cardId) => {
@@ -73,49 +61,30 @@ deleteCard = (cardId) => {
         method: 'DELETE',
         headers: this._headers
         })
-        .then(res => {if(res.ok){
-        }})
-        .catch((err)=>{console.log(err)})
-        .finally (() => {location.reload()})
+        .then ((res) => {return (this._checkAnswer(res))})};
+        
 
-        }
           
-createLike = (cardId, likeNum) => {
+createLike = (cardId) => {
         return fetch (`${this._baseUrl}/cards/${cardId}/likes`, {
         method: 'PUT',
         headers: this._headers
         })
-        .then(res => res.json())
-        .then((result) => {likeNum.textContent = result.likes.length})
-        .catch((err)=>{console.log(err)})
-        .finally (() => {})
-        }
+        .then ((res) => {return (this._checkAnswer(res))})
+        .then ((data) => {return data})
+        };
 
-checkLikes = (cardId) => {
-    return fetch (`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: 'GET',
-        headers: this._headers
-        })
-        .then((res) => {res.json()})
-    
-        .catch((err)=>{console.log(err)})
-        .finally (() => {})
-        }
-     
 
-deleteLike = (cardId, likeNum) => {
+deleteLike = (cardId) => {
         return fetch (`${this._baseUrl}/cards/${cardId}/likes`, {
         method: 'DELETE',
         headers: this._headers
         })
-        .then(res => res.json())
-        .then((result) => {likeNum.textContent = result.likes.length})
-        .catch((err)=>{console.log(err)})
-        .finally (() => {})
-        }
+        .then ((res) => {return (this._checkAnswer(res))})
+        .then ((data) => {return data})
+        };
  
-        
- changeAvatar = (avatarlink) => {
+changeAvatar = (avatarlink) => {
         return fetch (`${this._baseUrl}/users/me/avatar`, {
         method: 'PATCH',
         headers: this._headers,
@@ -123,9 +92,7 @@ deleteLike = (cardId, likeNum) => {
             avatar: avatarlink
             })
         })
-        .then ((res) => {if(res.ok){location.reload()}})
-        .catch((err) => {
-            console.log(err);
-            }); 
+        .then ((res) => {return (this._checkAnswer(res))})
+        .then ((data) => {return data})
     }
 }

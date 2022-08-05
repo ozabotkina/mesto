@@ -7,9 +7,7 @@ constructor(popupSelector, {submitHandler}){
         this.form = this._popup.querySelector('.popup__container');
         this._inputList = this.form.querySelectorAll('.popup__input');
         this.button = this.form.querySelector('.popup__button');
-
-
-    };
+  };
 
     _getInputValues(){
         this._formValues = {};

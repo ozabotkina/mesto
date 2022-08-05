@@ -5,8 +5,6 @@ export class UserInfo {
         this._about = document.querySelector(aboutSelector);  
     };
   
-
-    
  getUserInfo(){
 
     this.initialValues = {};
@@ -17,8 +15,9 @@ export class UserInfo {
  };
  
  setUserInfo(name, about){
-     this._name.textContent = name;
-     this._about.textContent = about;
+     if(name !== undefined){
+     this._name.textContent = name};
+     if(about !== undefined){
+     this._about.textContent = about};
  };
-
 }

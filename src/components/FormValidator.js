@@ -27,12 +27,17 @@ export class FormValidator {
     errorElement.textContent = ' ';
   };
 
+hideAllErrors(){
+  this._allInputs.forEach((input) => {this._hideInputError(input)})
+}
+
   _isValid(inputSelector){
     
-    if (!inputSelector.validity.valid) {
-    this._showInputError(inputSelector, inputSelector.validationMessage);
-    } else {
-    this._hideInputError(inputSelector);
+    if (inputSelector.validity.valid) {
+      this._hideInputError(inputSelector); 
+    }
+    else {
+      this._showInputError(inputSelector, inputSelector.validationMessage);
     }
   };
 

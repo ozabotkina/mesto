@@ -12,10 +12,22 @@ export const validationConfig =
   errorClass: 'popup__error_visible'
 }; 
 
+export const popupSelectors = {
+  popupAuthorSelector: '.popup_author',
+  popupAvatarSelector: '.popup_avatar',
+  popupDeleteSelector: '.popup_delete-card',
+  popupNewCardSelector: '.popup_new-card',
+  popupImageSelector: '.image-popup'
+
+}
+
+
 export const userInfoSelectors =
 {
  nameSelector: '.profile__name',
- aboutSelector: '.profile__about'
+ aboutSelector: '.profile__about',
+ avatarSelector: '.profile__avatar'
+
 }
 
 export const authorButton = document.querySelector ('.edit-button');

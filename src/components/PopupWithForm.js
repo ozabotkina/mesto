@@ -7,6 +7,7 @@ constructor(popupSelector, {submitHandler}){
         this.form = this._popup.querySelector('.popup__container');
         this._inputList = this.form.querySelectorAll('.popup__input');
         this.button = this.form.querySelector('.popup__button');
+        this.normalButtonText = this.form.querySelector('.popup__button').textContent;
   };
 
     _getInputValues(){
@@ -22,15 +23,25 @@ constructor(popupSelector, {submitHandler}){
        super.setEventListeners();
        this.form.addEventListener
        ('submit', (evt) => {
+        this.renderLoading(true);
         evt.preventDefault();
-        this.button.textContent = "Сохранение...";
         this._submit(this._getInputValues());
        }
-       );  
-    };
+       ); 
+      } 
+    
+
+    renderLoading(isLoading){
+      if(isLoading){
+        this.button.textContent = "Сохранение...";
+      }
+      else{
+        this.button.textContent = this.normalButtonText;
+      }
+    }
 
     close(){
         super.close();
-        this.form.reset();
-    }
+        this.form.reset()
+}
 }

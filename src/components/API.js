@@ -16,7 +16,6 @@ fetchInitialData(){
         headers: this._headers
         })   
     .then ((res) => {return (this._checkAnswer(res))})
-    .then ((data) => {return data})
 }
 
 
@@ -39,7 +38,6 @@ fetchInitialCards = () => {
         headers: this._headers
         })
     .then ((res) => { return (this._checkAnswer(res)); })
-    .then ((data) => {return data})
     };
         
 
@@ -53,7 +51,6 @@ fetchInitialCards = () => {
         })
         })
         .then ((res) => {return (this._checkAnswer(res))})
-        .then ((data) => {return data})
         };
           
 deleteCard = (cardId) => {
@@ -71,7 +68,6 @@ createLike = (cardId) => {
         headers: this._headers
         })
         .then ((res) => {return (this._checkAnswer(res))})
-        .then ((data) => {return data})
         };
 
 
@@ -81,7 +77,6 @@ deleteLike = (cardId) => {
         headers: this._headers
         })
         .then ((res) => {return (this._checkAnswer(res))})
-        .then ((data) => {return data})
         };
  
 changeAvatar = (avatarlink) => {
@@ -93,6 +88,5 @@ changeAvatar = (avatarlink) => {
             })
         })
         .then ((res) => {return (this._checkAnswer(res))})
-        .then ((data) => {return data})
     }
 }

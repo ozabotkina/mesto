@@ -1,5 +1,5 @@
 import './index.css';
-import { createCard, validationConfig, authorButton, newCardButton, jobInput, nameInput, userInfoSelectors, authorName, authorAbout, authorAvatar, createCardList, avatarEdit} from '../utils/shared.js';
+import { createCard, validationConfig, popupSelectors, authorButton, newCardButton, jobInput, nameInput, userInfoSelectors, authorName, authorAbout, authorAvatar, createCardList, avatarEdit} from '../utils/shared.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -16,20 +16,22 @@ const api = new API({
   }
 });
 
-const popupImage = new PopupWithImage('.image-popup');
+const popupImage = new PopupWithImage(popupSelectors.popupImageSelector);
 popupImage.setEventListeners();
 
-const popupDelete = new PopupDelete('.popup_delete-card');
+const popupDelete = new PopupDelete(popupSelectors.popupDeleteSelector);
 popupDelete.setEventListeners();
 
 let userId = '';
 let cardsList = '';
 
+const userInfo = new UserInfo(userInfoSelectors);
+userInfo.getUserInfo();
+
+
 api.fetchInitialData()
   .then((res) => {
-    authorName.textContent = res.name;
-    authorAbout.textContent = res.about;
-    authorAvatar.src = res.avatar;
+    userInfo.setUserInfo(res.name, res.about, res.avatar);
     userId = res._id;
     })  
    .then(() => {api.fetchInitialCards()
@@ -76,7 +78,7 @@ api.fetchInitialData()
     }); 
     
 const popupNewCard = new PopupWithForm(
-  '.popup_new-card', 
+  popupSelectors.popupNewCardSelector, 
   {submitHandler: (formValues) => {
     api.addNewCard(formValues.cardlink, formValues.cardname)
     .then ((data) => {
@@ -108,42 +110,43 @@ const popupNewCard = new PopupWithForm(
     userId
     );
     return newCardElement})
-       .then ((newCardElement) => {cardsList.addItem(newCardElement)})
+       .then ((newCardElement) => {cardsList.container.prepend(newCardElement)})
        .then (() => { popupNewCard.close()})
        .catch((err)=>{console.log(err)})
+       .finally(() => {popupNewCard.renderLoading(false)})
+
    ;
   }}
 );
 
 popupNewCard.setEventListeners();
 
-const userInfo = new UserInfo(userInfoSelectors);
-userInfo.getUserInfo();
 
 export const popupAuthor = new PopupWithForm(
-  '.popup_author',
+  popupSelectors.popupAuthorSelector,
   {submitHandler: (formValues) => {
     const name = formValues.popup__name;
     const about = formValues.popup__about;
-    userInfo.setUserInfo(name,about);
     api.changeAuthorInfo(name,about)
+    .then((data) => userInfo.setUserInfo(data.name, data.about, data.avatar))
+    .then(() => {popupAuthor.close()})
     .catch((err) => {
-      console.log(err);
-      }); 
-    popupAuthor.close();
-  
+      console.log(err);})
+    .finally(() => {popupAuthor.renderLoading(false)})
+      ; 
   }}
 );
 popupAuthor.setEventListeners();
 
 const popupAvatar = new PopupWithForm(
-  '.popup_avatar', 
+  popupSelectors.popupAvatarSelector, 
   {submitHandler: (formValues) => {
     api.changeAvatar(formValues.avatarlink)
     .then ((data) => {
     authorAvatar.src = data.avatar})
     .then (() => {popupAvatar.close()})
     .catch((err) => {console.log(err)})
+    .finally(() => {popupAvatar.renderLoading(false)})
 
   }}
 )
@@ -182,6 +185,7 @@ avatarEdit.addEventListener('mouseout', function(){
 } )
 
 avatarEdit.addEventListener('click', function(){
+  formAvatarValidator.toggleButtonState();
   formAvatarValidator.hideAllErrors();
   popupAvatar.open();
 } )
